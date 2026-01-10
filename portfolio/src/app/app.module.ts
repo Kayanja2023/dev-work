@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -11,6 +12,7 @@ import { InterestsComponent } from './components/interests/interests.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
 import { ExperienceComponent } from './components/experience/experience.component';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 
 
 @NgModule({
@@ -19,16 +21,17 @@ import { ExperienceComponent } from './components/experience/experience.componen
     NavbarComponent,
     HeroComponent,
     AboutComponent,
-    AboutComponent,
     ProjectsComponent,
     SkillsComponent,
     ContactComponent,
     ProjectDetailComponent,
     ExperienceComponent,
-    InterestsComponent
+    InterestsComponent,
+    ChatbotComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
