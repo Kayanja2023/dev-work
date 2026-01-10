@@ -1,0 +1,392 @@
+/* Backdrop with premium blur */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 16, 37, 0.6);
+    backdrop-filter: blur(12px);
+    z-index: 2000;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    animation: fadeIn 0.4s ease;
+}
+
+/* The Glass Sheet */
+.glass-sheet-modal {
+    width: 100%;
+    max-width: 900px;
+    height: 92vh;
+    background: #fff;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+    box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Modal Banner */
+.modal-banner {
+    height: 250px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.banner-overlay {
+    width: 100%;
+    height: 100%;
+    /* Fade into white */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(255, 255, 255, 1) 90%);
+    backdrop-filter: blur(2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Header */
+.modal-header {
+    padding: 40px 50px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 10;
+    position: relative;
+    /* If no banner, sticky white header */
+    background: transparent;
+}
+
+.modal-header.has-banner {
+    margin-top: 100px;
+    /* Push down to clear banner space */
+    padding-bottom: 20px;
+}
+
+.header-info h2 {
+    font-size: 3rem;
+    margin: 5px 0 0;
+    line-height: 1;
+    background: linear-gradient(135deg, #051025, #0066FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.category-pill {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--text-accent);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.close-btn {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all 0.2s;
+    backdrop-filter: blur(4px);
+}
+
+.close-btn:hover {
+    background: var(--text-accent);
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* Scroll Content */
+.modal-scroll-content {
+    overflow-y: auto;
+    padding: 0 50px 60px;
+    flex: 1;
+    z-index: 10;
+    position: relative;
+}
+
+.modal-section {
+    margin-bottom: 70px;
+}
+
+h3 {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* Hero Text */
+.summary-lead {
+    font-size: 1.35rem;
+    line-height: 1.6;
+    color: var(--text-main);
+    margin-bottom: 24px;
+    max-width: 90%;
+}
+
+.tags-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tech-tag {
+    background: #F0F4F8;
+    color: var(--text-accent);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(0, 102, 255, 0.1);
+}
+
+/* Architecture Pipeline */
+.arch-track {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 0;
+    position: relative;
+    overflow-x: auto;
+}
+
+.track-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(0, 102, 255, 0.1);
+    z-index: 0;
+}
+
+.arch-node {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    animation: popIn 0.5s backwards;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.node-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--text-accent);
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    border: 2px solid white;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2);
+}
+
+.step-card {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    font-weight: 600;
+    color: var(--text-main);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    min-width: 120px;
+    font-size: 0.9rem;
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.feature-card {
+    padding: 28px;
+    background: #fff;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 102, 255, 0.2);
+}
+
+.feat-icon {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+}
+
+.feature-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+/* Chat Simulator */
+.chat-interface {
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.chat-header {
+    padding: 16px 24px;
+    background: #F8FAFC;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #00CC66;
+    border-radius: 50%;
+}
+
+.chat-body {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    background: #fff;
+}
+
+.chat-pair {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.msg-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.user-row {
+    justify-content: flex-end;
+}
+
+.ai-row {
+    justify-content: flex-start;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F0F4F8;
+    font-size: 1rem;
+}
+
+.bot-avatar-small {
+    background: #E6F0FF;
+    color: #0066FF;
+}
+
+.user-avatar {
+    background: #F0F4F8;
+}
+
+.bubble {
+    padding: 12px 18px;
+    border-radius: 18px;
+    font-size: 1rem;
+    line-height: 1.5;
+    max-width: 70%;
+}
+
+.user-bubble {
+    background: #0066FF;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.ai-bubble {
+    background: #F1F5F9;
+    color: #1E293B;
+    border-bottom-left-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    .glass-sheet-modal {
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    .arch-track {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+        overflow: visible;
+    }
+
+    .track-line {
+        width: 2px;
+        height: 100%;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .modal-banner {
+        height: 180px;
+    }
+}

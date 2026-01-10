@@ -1,47 +1,40 @@
 <div class="projects-wrapper">
     <div class="header-row">
         <h3>Selected Works</h3>
-        <a href="#" class="view-all">View All &rarr;</a>
+        <!-- <a href="#" class="view-all">View All &rarr;</a> -->
     </div>
 
     <div class="gallery-grid">
-        <!-- Project 1 -->
-        <div class="project-tile">
-            <div class="tile-content">
-                <span class="category">Dashboard</span>
-                <h4>Neon Analytics</h4>
-                <p>Real-time data visualization platform for DeFi protocols.</p>
-                <div class="mini-tags">
-                    <span>Angular</span>
-                    <span>D3</span>
+        <!-- Loop through projects -->
+        <div *ngFor="let proj of projects" class="project-tile" [class.featured-tile]="proj.id === 'hollard-ai'"
+            (click)="openProject(proj)">
+
+            <!-- Image Background for Featured Tile -->
+            <div *ngIf="proj.image" class="tile-image" [style.background-image]="'url(' + proj.image + ')'">
+                <div class="live-indicator">
+                    <span class="pulse"></span> Live System
                 </div>
             </div>
-        </div>
 
-        <!-- Project 2 -->
-        <div class="project-tile">
             <div class="tile-content">
-                <span class="category">Design System</span>
-                <h4>Aurora UI</h4>
-                <p>A comprehensive glassmorphism component library for web.</p>
-                <div class="mini-tags">
-                    <span>SCSS</span>
-                    <span>Storybook</span>
+                <div class="header-flex">
+                    <span class="category">{{ proj.category }}</span>
+                    <!-- Show arrow only on hover/activeness -->
+                    <span class="arrow-icon">&nearr;</span>
                 </div>
-            </div>
-        </div>
 
-        <!-- Project 3 -->
-        <div class="project-tile">
-            <div class="tile-content">
-                <span class="category">Mobile App</span>
-                <h4>Zen Focus</h4>
-                <p>Productivity timer with ambient soundscapes.</p>
+                <h4>{{ proj.title }}</h4>
+                <p>{{ proj.summary }}</p>
+
                 <div class="mini-tags">
-                    <span>Ionic</span>
-                    <span>Audio API</span>
+                    <span *ngFor="let tag of proj.tags.slice(0, 4)">{{ tag }}</span>
+                    <span *ngIf="proj.tags.length > 4">+{{ proj.tags.length - 4 }}</span>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal Injection -->
+    <app-project-detail *ngIf="selectedProject" [project]="selectedProject" (close)="closeProject()">
+    </app-project-detail>
 </div>
