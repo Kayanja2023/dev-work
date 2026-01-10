@@ -1,0 +1,41 @@
+.contact-card {
+    background: linear-gradient(135deg, white 0%, #F3F5F9 100%);
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+}
+
+.cta-text h3 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.cta-text p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.cta-button {
+    background: var(--text-accent);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 10px 20px rgba(0, 102, 255, 0.25);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(0, 102, 255, 0.35);
+}
+
+@media (max-width: 600px) {
+    .contact-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+}
