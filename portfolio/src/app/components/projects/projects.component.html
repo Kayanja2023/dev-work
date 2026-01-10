@@ -1,34 +1,36 @@
 <div class="projects-wrapper">
     <div class="header-row">
         <h3>Selected Works</h3>
-        <!-- <a href="#" class="view-all">View All &rarr;</a> -->
+
     </div>
 
     <div class="gallery-grid">
         <!-- Loop through projects -->
-        <div *ngFor="let proj of projects" class="project-tile" [class.featured-tile]="proj.id === 'hollard-ai'"
-            (click)="openProject(proj)">
+        <div *ngFor="let proj of projects; let i = index" class="project-tile" [class.featured-span]="i === 0"
+            [style.--brand-color]="proj.brandColor || '#0066FF'" (click)="openProject(proj)">
 
-            <!-- Image Background for Featured Tile -->
-            <div *ngIf="proj.image" class="tile-image" [style.background-image]="'url(' + proj.image + ')'">
-                <div class="live-indicator">
-                    <span class="pulse"></span> Live System
+            <!-- Card Visual (Top) -->
+            <div class="tile-visual">
+                <div class="visual-bg" *ngIf="proj.image" [style.background-image]="'url(' + proj.image + ')'"></div>
+                <div class="overlay"></div>
+                <div class="live-badge"
+                    *ngIf="['hollard-ai', 'pep-merch-hub', 'sentiment-rag', 'java-spring-api'].includes(proj.id)">
+                    <span class="pulse"></span> Live Demo
                 </div>
             </div>
 
+            <!-- Card Content (Bottom) -->
             <div class="tile-content">
-                <div class="header-flex">
+                <div class="content-top">
                     <span class="category">{{ proj.category }}</span>
-                    <!-- Show arrow only on hover/activeness -->
-                    <span class="arrow-icon">&nearr;</span>
+                    <div class="arrow-btn">&nearr;</div>
                 </div>
 
-                <h4>{{ proj.title }}</h4>
+                <h3>{{ proj.title }}</h3>
                 <p>{{ proj.summary }}</p>
 
-                <div class="mini-tags">
-                    <span *ngFor="let tag of proj.tags.slice(0, 4)">{{ tag }}</span>
-                    <span *ngIf="proj.tags.length > 4">+{{ proj.tags.length - 4 }}</span>
+                <div class="tags-list">
+                    <span *ngFor="let tag of proj.tags.slice(0, 3)" class="mini-tag">{{ tag }}</span>
                 </div>
             </div>
         </div>

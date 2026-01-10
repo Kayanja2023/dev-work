@@ -21,9 +21,22 @@ main {
     grid-column: span 2;
 }
 
+.cell-experience {
+    grid-column: span 4;
+}
+
 .cell-projects {
     grid-column: span 4;
     /* Full width row */
+}
+
+
+
+/* Full width row */
+
+
+.cell-interests {
+    grid-column: span 4;
 }
 
 .cell-contact {
@@ -45,7 +58,9 @@ footer {
 
     .cell-about,
     .cell-skills,
+    .cell-experience,
     .cell-projects,
+    .cell-interests,
     .cell-contact {
         grid-column: span 1;
     }

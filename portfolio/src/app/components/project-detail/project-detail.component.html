@@ -1,85 +1,133 @@
 <div class="modal-backdrop" (click)="onClose()">
-    <div class="glass-sheet-modal" (click)="$event.stopPropagation()">
+    <!-- Modal v3.0: Split-Screen Immersive -->
+    <div class="split-modal" (click)="$event.stopPropagation()" [style.--brand-color]="project.brandColor || '#0066FF'">
 
-        <!-- Hero Banner Background -->
-        <div class="modal-banner" *ngIf="project.image" [style.background-image]="'url(' + project.image + ')'">
-            <div class="banner-overlay"></div>
+        <!-- Left Column: Sticky Visual (Desktop) -->
+        <div class="visual-col">
+            <div class="visual-bg" *ngIf="project.image" [style.background-image]="'url(' + project.image + ')'">
+                <div class="v-overlay"></div>
+            </div>
+
+            <div class="visual-content">
+                <div class="top-meta">
+                    <span class="category-badge">{{ project.category }}</span>
+                </div>
+
+                <h1>{{ project.title }}</h1>
+                <p class="brand-pitch">{{ project.summary }}</p>
+
+                <div class="tech-stack-visual">
+                    <span *ngFor="let tag of project.tags" class="v-tag">{{ tag }}</span>
+                </div>
+
+                <button class="mobile-close-btn" (click)="onClose()">&times;</button>
+            </div>
         </div>
 
-        <!-- Header: Sticky -->
-        <header class="modal-header" [class.has-banner]="project.image">
-            <div class="header-info">
-                <span class="category-pill">{{ project.category }}</span>
-                <h2>{{ project.title }}</h2>
-            </div>
-            <button class="close-btn" (click)="onClose()">&times;</button>
-        </header>
+        <!-- Right Column: Scrollable Content -->
+        <div class="content-col">
+            <button class="desktop-close-btn" (click)="onClose()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
 
-        <!-- Scrollable Content -->
-        <div class="modal-scroll-content">
+            <div class="content-wrapper">
 
-            <!-- Section 1: Hero & Tags -->
-            <section class="modal-section hero-section">
-                <p class="summary-lead">{{ project.summary }}</p>
-                <div class="tags-row">
-                    <span *ngFor="let tag of project.tags" class="tech-tag">{{ tag }}</span>
-                </div>
-            </section>
+                <!-- Intro Blurb -->
+                <section class="section intro">
+                    <h3>About the Project</h3>
+                    <p class="full-desc">{{ project.fullDescription }}</p>
+                </section>
 
-            <!-- Section 2: Architecture Diagram (Visual) -->
-            <section class="modal-section arch-section">
-                <h3>System Architecture</h3>
-                <div class="arch-track">
-                    <div class="track-line"></div> <!-- Connecting Line -->
-                    <div *ngFor="let step of project.architecture; let i = index" class="arch-node"
-                        [style.animation-delay]="i * 0.1 + 's'">
-                        <div class="node-dot"></div>
-                        <div class="step-card glass">{{ step }}</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Section 3: Feature Grid (Bento) -->
-            <section class="modal-section features-section">
-                <h3>Key Capabilities</h3>
-                <div class="features-grid">
-                    <div *ngFor="let feat of project.features" class="feature-card glass">
-                        <div class="feat-icon">{{ feat.icon }}</div>
-                        <h4>{{ feat.title }}</h4>
-                        <p>{{ feat.desc }}</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Section 4: Chat Simulator (Optional) -->
-            <section *ngIf="project.chatSimulatorData" class="modal-section chat-section">
-                <h3>Live Demo Simulation</h3>
-                <div class="chat-interface glass">
-                    <!-- Chat Header -->
-                    <div class="chat-header">
-                        <div class="bot-avatar">🤖</div>
-                        <span>Hollard Assistant</span>
-                        <span class="status-dot"></span>
-                    </div>
-
-                    <div class="chat-body">
-                        <div *ngFor="let msg of project.chatSimulatorData" class="chat-pair">
-                            <!-- User Bubble -->
-                            <div class="msg-row user-row">
-                                <div class="bubble user-bubble">{{ msg.user }}</div>
-                                <div class="avatar user-avatar">👤</div>
+                <!-- Live Chat Demo -->
+                <section *ngIf="project.chatSimulatorData" class="section demo">
+                    <h3>System Demo</h3>
+                    <div class="iphone-mockup glass-card">
+                        <div class="mockup-header">
+                            <div class="notch"></div>
+                            <div class="app-bar">
+                                <span class="time">9:41</span>
+                                <span class="status">LTE</span>
                             </div>
-
-                            <!-- AI Bubble -->
-                            <div class="msg-row ai-row">
-                                <div class="avatar bot-avatar-small">🤖</div>
-                                <div class="bubble ai-bubble">{{ msg.ai }}</div>
+                            <div class="chat-meta">
+                                <div class="avatar-circle">🤖</div>
+                                <div class="meta-text">
+                                    <span class="m-name">AI Assistant</span>
+                                    <span class="m-status">Active now</span>
+                                </div>
                             </div>
+                        </div>
+
+                        <div class="mockup-body">
+                            <ng-container *ngFor="let msg of project.chatSimulatorData">
+                                <!-- User Turn -->
+                                <div class="chat-row user-turn">
+                                    <div class="msg-bubble user-msg">{{ msg.user }}</div>
+                                </div>
+                                <!-- AI Turn -->
+                                <div class="chat-row ai-turn">
+                                    <div class="avatar-mini">🤖</div>
+                                    <div class="msg-bubble ai-msg">{{ msg.ai }}</div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <p class="demo-caption">Interactive prototype simulation</p>
+                </section>
+
+                <!-- Case Study: Business Context -->
+                <div class="case-study-section">
+                    <h3>🧪 The Business Case</h3>
+
+                    <div class="context-grid">
+                        <div class="context-item problem">
+                            <h4>🔴 The Problem</h4>
+                            <p>{{ project.problem }}</p>
+                        </div>
+                        <div class="context-item solution">
+                            <h4>🟢 The Solution</h4>
+                            <p>{{ project.solution }}</p>
                         </div>
                     </div>
                 </div>
-            </section>
 
-        </div>
-    </div>
-</div>
+                <!-- Case Study: Impact -->
+                <div class="case-study-section" *ngIf="project.impact">
+                    <h3>🚀 Key Impact & Metrics</h3>
+                    <ul class="impact-list">
+                        <li *ngFor="let item of project.impact">
+                            <span class="impact-icon">🏆</span>
+                            <span class="impact-text">{{ item }}</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Architecture Flow -->
+                <div class="case-study-section">
+                    <h3>⚙️ System Architecture</h3>
+                    <div class="architecture-flow">
+                        <div class="flow-step" *ngFor="let step of project.architecture; let i = index">
+                            <div class="step-box">{{ step }}</div>
+                            <div class="step-arrow" *ngIf="i < project.architecture.length - 1">➜</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Features -->
+                <div class="features-grid">
+                    <div class="feature-card" *ngFor="let feature of project.features">
+                        <div class="icon">{{ feature.icon }}</div>
+                        <div class="feat-content">
+                            <h4>{{ feature.title }}</h4>
+                            <p>{{ feature.desc }}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- End content-wrapper -->
+        </div> <!-- End content-col -->
+    </div> <!-- End split-modal -->
+</div> <!-- End modal-backdrop -->

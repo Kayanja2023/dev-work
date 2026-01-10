@@ -1,0 +1,19 @@
+<div class="bento-card interests-wrapper">
+    <div class="header">
+        <h3>Interests & Hobbies</h3>
+        <p>Beyond the code: Impacting the community.</p>
+    </div>
+
+    <div class="gallery-grid">
+        <div class="glass-tile" *ngFor="let item of interests">
+            <div class="image-container">
+                <img [src]="item.image" [alt]="item.title" loading="lazy">
+            </div>
+            <div class="content-overlay">
+                <div class="icon-badge">{{ item.icon }}</div>
+                <h4>{{ item.title }}</h4>
+                <p>{{ item.desc }}</p>
+            </div>
+        </div>
+    </div>
+</div>
