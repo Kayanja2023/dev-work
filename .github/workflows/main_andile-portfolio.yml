@@ -36,6 +36,8 @@ jobs:
           Copy-Item package.json -Destination deployment-package
           Copy-Item package-lock.json -Destination deployment-package
           Copy-Item -Recurse dist -Destination deployment-package
+          Set-Location deployment-package
+          npm install --production
         shell: pwsh
 
       - name: Upload artifact for deployment job
