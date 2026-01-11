@@ -45,7 +45,8 @@ export class ProjectsComponent {
       chatSimulatorData: [
         { user: 'How do I submit a life insurance claim?', ai: 'To submit a life insurance claim, you need to: 1) Download the claim form from the portal, 2) Attach a certified death certificate, and 3) Email claims@insureflow.demo. Processing typically takes 5-7 business days.' },
         { user: 'What if I miss a premium?', ai: 'If a premium is missed, you have a 30-day grace period. If payment is not received by then, the policy may lapse. I recommend contacting billing immediately.' }
-      ]
+      ],
+      businessValue: 'Empowers claims teams to serve customers faster by providing instant, accurate policy information. Reduces training overhead and ensures consistent responses across all support staff.'
     },
     {
       id: 'pep-merch-hub',
@@ -82,7 +83,8 @@ export class ProjectsComponent {
       chatSimulatorData: [
         { user: 'What is the approval threshold for purchase orders?', ai: 'For Purchase Orders > R500,000, Level 3 approval (Divisional Manager) is required. Orders below this threshold typically require Level 2 (Category Manager) sign-off.' },
         { user: 'Who is the contact for denim suppliers?', ai: 'The primary contact for Denim Suppliers is listed in the Vendor Directory as: Sarah Jenkins (s.jenkins@supplier-xyz.com), Lead Time: 45 days.' }
-      ]
+      ],
+      businessValue: 'Breaks down information silos in retail operations. Merchandising teams can make faster, more confident decisions without waiting for colleagues or searching through folders.'
     },
     {
       id: 'sentiment-rag',
@@ -116,9 +118,10 @@ export class ProjectsComponent {
         { title: 'Context Aware', desc: 'Retains session history for continuity.', icon: '🧠' }
       ],
       chatSimulatorData: [
-        { user: 'This service is absolutely terrible! I have been waiting for hours!', ai: '⚠️ [System]: Negative sentiment detected (Score: 0.85). Integrating human agent... \n\nI apologize for the frustration. I have flagged this for immediate human review. An agent will be with you shortly.' },
+        { user: 'This service is absolutely terrible! I have been waiting for hours!', ai: '[System]: Negative sentiment detected. Routing to human agent... \n\nI apologize for the frustration. I have flagged this for immediate human review. An agent will be with you shortly.' },
         { user: 'How do I update my billing address?', ai: 'You can update your billing address by logging into the portal and navigating to Profile > Billing Settings.' }
-      ]
+      ],
+      businessValue: 'Protects brand reputation by detecting frustrated customers before they escalate. Ensures the right issues reach human agents while routine queries are handled automatically.'
     },
     {
       id: 'java-spring-api',
@@ -154,7 +157,8 @@ export class ProjectsComponent {
       chatSimulatorData: [
         { user: 'GET /api/v1/users/1', ai: 'HTTP 200 OK \n{\n  "id": 1,\n  "username": "dev_user",\n  "email": "dev@example.com",\n  "createdAt": "2024-03-15T10:00:00Z"\n}' },
         { user: 'POST /api/v1/posts (Missing Content)', ai: 'HTTP 400 Bad Request \n{\n  "timestamp": "2024-03-15T10:05:00Z",\n  "status": 400,\n  "error": "Validation Error",\n  "message": "Post content cannot be empty"\n}' }
-      ]
+      ],
+      businessValue: 'Demonstrates robust backend engineering practices that support scalable content platforms. Clean architecture enables future growth without costly rewrites.'
     },
 
     {
@@ -191,7 +195,8 @@ export class ProjectsComponent {
       chatSimulatorData: [
         { user: 'What are my strongest technical skills?', ai: 'Based on your CV, your core strengths are Python (5 years), Angular (3 years), and Cloud Architecture (AWS Certified). You also have significant experience in RAG system design.' },
         { user: 'Do I have management experience?', ai: 'Yes. You led a team of 4 developers at "TechCorp" (2021-2023) where you implemented Agile methodologies and reduced deployment time by 40%.' }
-      ]
+      ],
+      businessValue: 'Transforms static resumes into interactive experiences. Helps candidates present their qualifications more effectively while showcasing AI capabilities to potential employers.'
     }
   ];
 

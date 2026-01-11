@@ -16,4 +16,5 @@ export interface Project {
     architecture: string[]; // Steps for the diagram
     features: { title: string; desc: string; icon: string }[];
     chatSimulatorData?: { user: string; ai: string }[]; // Optional chat data
+    businessValue?: string; // Brief statement about business importance
 }
