@@ -13,39 +13,167 @@ export class ChatbotService {
     private apiUrl = 'http://localhost:8000/api/chat';
 
     // System prompt for strict knowledge base adherence
-    private readonly systemPrompt = `You are Andile Lwanga's professional portfolio assistant. 
-You MUST ONLY answer questions about Andile - his skills, experience, education, projects, research, and contact information.
+    private readonly systemPrompt = `You are Andile Lwanga's AI Portfolio Assistant — a friendly, professional virtual representative designed to help recruiters, hiring managers, and collaborators learn about Andile's qualifications, experience, and availability.
 
-STRICT RULES:
-1. NEVER answer questions unrelated to Andile's professional profile.
-2. NEVER provide general knowledge, opinions, or advice on unrelated topics.
-3. If asked about anything outside Andile's portfolio, politely redirect to relevant topics.
-4. Keep responses professional, concise, and factual.
-5. Always base answers on the provided knowledge base.`;
+## YOUR PERSONALITY
+- Be warm, professional, and enthusiastic about Andile's work
+- Use a conversational tone while maintaining professionalism
+- Be concise but thorough — aim for 2-4 sentences per response unless more detail is requested
+- Show genuine interest in helping visitors find the information they need
+
+## ABOUT ANDILE (Your Context)
+Andile Michael Lwanga is an Honours ICT graduate and Graduate R&D Engineer with expertise in:
+- 🤖 AI/ML: LangChain, RAG systems, OpenAI API, conversational AI
+- ☁️ Cloud & DevOps: AWS (Lambda, S3, API Gateway), Docker, CI/CD
+- 💻 Development: Python, Java Spring Boot, Angular, TypeScript, SQL
+- 📊 Data: Power BI, ETL pipelines, data analysis
+- 🔄 Automation: Power Automate, n8n, UiPath, custom workflows
+
+He has published research at IEEE and ACM CHI, built production AI systems at Clickatell, and is actively seeking roles in AI Engineering, RPA Development, or Technical Business Analysis.
+
+## STRICT RULES
+1. ONLY answer questions about Andile's professional background, skills, experience, education, projects, research, or contact info
+2. If asked about anything unrelated (weather, jokes, general knowledge, coding help, etc.), politely redirect: "I'm specifically here to tell you about Andile! I'd love to share details about his [skills/projects/experience]. What interests you?"
+3. Never make up information — only use facts from the knowledge base provided
+4. If you don't know something specific, say so and offer related information you do know
+5. When discussing projects, emphasize the business impact and technical approach
+6. Always encourage action: suggest relevant follow-up questions or offer to connect them with Andile
+
+## RESPONSE STYLE
+- Lead with the most relevant information
+- Use bullet points for lists when appropriate
+- Mention specific technologies, metrics, or achievements when available
+- End responses with a helpful follow-up offer when appropriate`;
 
     // Comprehensive knowledge base about Andile Michael Lwanga
     private knowledgeBase: Record<string, string> = {
-        'profile': 'Andile Michael Lwanga is an ICT professional based in Durban, KwaZulu-Natal. He holds an Honours Degree in ICT and has practical experience in systems integration, workflow automation, and secure technical delivery. He is skilled in building APIs, SQL pipelines, and cloud-based solutions. Andile excels at translating complex requirements into clear technical documentation and collaborating with stakeholders to deliver compliant, scalable outcomes. He is motivated to expand his expertise into AI systems that drive digital transformation.',
+        'profile': `Great question! Andile Michael Lwanga is an ICT professional based in Durban, South Africa 🇿🇦. He holds an Honours Degree in ICT (with Merit!) and has hands-on experience in:
 
-        'skills': 'Andile\'s core competencies include: **Generative AI & Automation** (LangChain workflow design, LLM Implementation, Conversational AI Architecture, Power Automate, n8n), **Technical Delivery** (Python, Java Spring Boot, SQL, REST API development, AWS Lambda/S3/API Gateway, Docker, Power BI dashboards, ETL pipelines, unit/e2e testing), and **Project Management** (Jira for Agile sprints, Confluence for documentation, CI/CD integration, cross-functional collaboration).',
+• Building production AI systems with RAG and LangChain
+• Developing secure AWS cloud infrastructure
+• Creating REST APIs and data pipelines
+• Translating business requirements into technical solutions
 
-        'education': 'Andile holds: **Bachelor of ICT Honours (Merit)** from Durban University of Technology (2024–2025), **Advanced Diploma in ICT (Merit)** from Durban University of Technology (2023–2024), and **Diploma in ICT (Cum Laude)** from Walter Sisulu University (2020–2023).',
+He's passionate about using AI to drive real business impact. Would you like to hear about his specific projects or work experience?`,
 
-        'experience': 'Andile\'s professional experience includes: **Graduate R&D Engineer at Clickatell** (Feb–Oct 2025) where he built secure AWS infrastructure, developed RESTful APIs with authentication, documented architectures, and partnered with stakeholders. **Junior Data Analyst Intern at Walter Sisulu University** (Dec 2023–Mar 2024) where he analyzed institutional data, built Power BI dashboards, and created SQL/Python pipelines. **ICT Trainee at MyBliss Technologies** (Aug 2022–Aug 2023) monitoring WordPress platforms. **Digital Skills Trainer at ecoLabs/NEMISA** (Aug–Sep 2021) designing training for 40+ participants.',
+        'skills': `Andile has a diverse technical toolkit! Here are his core strengths:
 
-        'projects': 'Key projects include: **Hollard AI** (Insurance underwriting assistant using RAG and vector search), **PEP Merchandising Hub** (Retail analytics dashboard with RAG-powered insights), **Sentiment RAG Chatbot** (Customer service bot with RoBERTa sentiment analysis and escalation), **Spring Blog Engine** (Java backend with REST APIs), and **TalentFlow AI** (Resume analysis using RAG architecture).',
+🤖 **AI & Automation**
+• LangChain, OpenAI API, RAG systems
+• Power Automate, n8n, UiPath
+• Conversational AI architecture
 
-        'research': 'Andile has co-authored two research publications: 1) "An Integrated Web-based Patient Records Application for Sustainable Healthcare Services" at the 2023 Zimbabwe Conference on Information and Communication Technologies (ZCICT). 2) "Co-designing an Integrated Digital Education Portal for Eastern Cape Rural Learners" at the 2023 CHI Conference on Human Factors in Computing Systems (CHI EA \'23), Hamburg, Germany.',
+💻 **Development**
+• Python, Java Spring Boot, TypeScript/Angular
+• REST APIs, SQL/MSSQL, Docker
+• AWS Lambda, S3, API Gateway
 
-        'contact': 'You can reach Andile at andilemlwanga@gmail.com. He is based in Durban, KwaZulu-Natal, South Africa. He is currently open to roles in AI Engineering, RPA Development, Technical Business Analysis, and Systems Integration.',
+📊 **Analytics & Delivery**
+• Power BI dashboards, ETL pipelines
+• Jira/Confluence, Agile/Scrum methodologies
+• CI/CD, cross-functional collaboration
 
-        'availability': 'Andile is actively seeking opportunities in AI Engineering, RPA Development, Technical Business Analysis, and Systems Integration. He is passionate about building reliable, business-aligned technology solutions that drive digital transformation.',
+Want me to dive deeper into any of these areas?`,
 
-        'cloud': 'Andile has hands-on experience with AWS services including Lambda, S3, API Gateway, and Docker. He has built secure cloud infrastructure with IAM policies, monitoring, and compliance audit trails at Clickatell.',
+        'education': `Andile has a strong academic foundation:
 
-        'automation': 'Andile specializes in workflow automation using Power Automate, n8n, and custom Python scripts. He has experience with LangChain for AI workflow design and has built automated reporting systems that improved data integrity.',
+🎓 **Bachelor of ICT Honours (Merit)** — Durban University of Technology (2024–2025)
+🎓 **Advanced Diploma in ICT (Merit)** — Durban University of Technology (2023–2024)
+🎓 **Diploma in ICT (Cum Laude)** — Walter Sisulu University (2020–2023)
 
-        'offtopic': 'I\'m specifically designed to answer questions about Andile Lwanga\'s professional background. I can tell you about his skills, experience, education, projects, research publications, or how to contact him. What would you like to know about Andile?'
+He's also published research at IEEE and ACM CHI conferences! Would you like to hear about his publications?`,
+
+        'experience': `Andile has built a solid career trajectory:
+
+**🔬 Graduate R&D Engineer at Clickatell** (Feb–Oct 2025)
+• Built secure AWS infrastructure with IAM policies & audit trails
+• Developed RESTful APIs with authentication & monitoring
+• Documented system architectures and collaborated with stakeholders
+
+**📊 Junior Data Analyst at Walter Sisulu University** (Dec 2023–Mar 2024)
+• Analyzed institutional data to uncover insights
+• Built Power BI dashboards for leadership reporting
+• Created SQL/Python ETL pipelines improving data integrity
+
+**💻 ICT Trainee at MyBliss Technologies** (Aug 2022–Aug 2023)
+• Monitored and maintained WordPress platforms
+
+Would you like more details on any specific role?`,
+
+        'projects': `Andile has built some impressive AI-powered solutions! 🚀
+
+**🏦 Hollard AI** — Insurance underwriting assistant using RAG and vector search to help agents make faster, more accurate decisions
+
+**🛒 PEP Merchandising Hub** — Retail analytics dashboard with RAG-powered insights for merchandising optimization
+
+**💬 Sentiment RAG Chatbot** — Customer service bot with RoBERTa sentiment analysis and automatic escalation for negative sentiment
+
+**📝 TalentFlow AI** — Resume analysis system using RAG architecture to match candidates with job requirements
+
+**☕ Spring Blog Engine** — Full-stack Java backend with REST APIs
+
+Want to learn more about any of these projects?`,
+
+        'research': `Andile is a published researcher! 📚
+
+**Paper 1:** "An Integrated Web-based Patient Records Application for Sustainable Healthcare Services"
+📍 IEEE ZCICT 2023 (Zimbabwe Conference on ICT)
+
+**Paper 2:** "Co-designing an Integrated Digital Education Portal for Eastern Cape Rural Learners"
+📍 ACM CHI EA '23, Hamburg, Germany — one of the top HCI conferences globally!
+
+Both publications demonstrate his passion for using technology to solve real-world problems in healthcare and education. Would you like links to read them?`,
+
+        'contact': `Great, I'd love to connect you with Andile! 📧
+
+**Email:** andilemlwanga@gmail.com
+**Location:** Durban, KwaZulu-Natal, South Africa
+
+He's currently open to opportunities in:
+• 🤖 AI Engineering
+• 🔄 RPA Development
+• 📋 Technical Business Analysis
+• 🔗 Systems Integration
+
+He's open to remote work and willing to relocate for the right opportunity. Feel free to reach out!`,
+
+        'availability': `Andile is actively seeking new opportunities! He's particularly interested in roles where he can:
+
+• Build AI systems that drive real business impact
+• Work with modern cloud and automation technologies
+• Collaborate with cross-functional teams
+• Contribute to digital transformation initiatives
+
+He's open to remote positions and willing to relocate. Ready to get in touch? His email is andilemlwanga@gmail.com`,
+
+        'cloud': `Andile has solid cloud experience, especially with AWS! ☁️
+
+**AWS Services:** Lambda, S3, API Gateway, IAM
+**DevOps:** Docker, CI/CD pipelines
+**Security:** Built secure infrastructure with IAM policies, monitoring, and compliance audit trails
+
+At Clickatell, he designed and implemented cloud-native solutions following security best practices. Want to hear about specific cloud projects?`,
+
+        'automation': `Automation is one of Andile's specialties! 🔄
+
+**Tools & Platforms:**
+• Power Automate for business process automation
+• n8n for workflow orchestration
+• LangChain for AI-powered automation
+• Custom Python scripts for ETL and reporting
+
+He's built systems that automated manual processes, improved data integrity, and saved significant time for teams. Would you like examples of his automation work?`,
+
+        'offtopic': `I appreciate the curiosity, but I'm specifically here to tell you about Andile Lwanga! 😊
+
+I'd love to share details about:
+• 💼 His work experience at Clickatell and other companies
+• 🛠️ His technical skills in AI, cloud, and automation
+• 🚀 The projects he's built
+• 📚 His research publications
+• 📧 How to contact him for opportunities
+
+What would you like to know?`
     };
 
     // Keywords that indicate off-topic questions

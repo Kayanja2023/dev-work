@@ -44,3 +44,120 @@ nav {
 .links a:hover {
     color: var(--text-accent);
 }
+
+/* Scroll Progress Indicator */
+.nav-content {
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: var(--scroll-progress, 0%);
+    background: linear-gradient(90deg, var(--text-accent), #00C6FF);
+    transition: width 0.15s ease-out;
+    border-radius: 0 1px 1px 0;
+}
+
+/* Active Link Indicator */
+.links a {
+    position: relative;
+}
+
+.links a::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--text-accent);
+    border-radius: 1px;
+    transform: translateX(-50%);
+    transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.links li.active a {
+    color: var(--text-accent);
+}
+
+.links li.active a::after {
+    width: 100%;
+}
+
+/* Mobile Hamburger Menu */
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 24px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.hamburger-line {
+    width: 100%;
+    height: 2px;
+    background: var(--text-main);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Mobile Menu Open State */
+.mobile-menu-btn.open .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-btn.open .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.open .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 80px 40px 40px;
+        gap: 24px;
+        transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .links.open {
+        right: 0;
+    }
+
+    .links a {
+        font-size: 1.2rem;
+    }
+
+    .links li.active a::after {
+        bottom: -4px;
+    }
+
+    .nav-content {
+        width: 90vw;
+        max-width: 400px;
+    }
+}

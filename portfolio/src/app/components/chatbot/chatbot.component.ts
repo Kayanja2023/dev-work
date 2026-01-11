@@ -14,10 +14,23 @@ export class ChatbotComponent {
         { role: 'assistant', content: 'Hi! I\'m Andile\'s AI assistant. Ask me about his skills, projects, or experience!' }
     ];
 
+    // Suggested prompts for quick interactions
+    suggestedPrompts = [
+        'What are your top skills?',
+        'Tell me about your projects',
+        'What\'s your work experience?',
+        'How can I contact you?'
+    ];
+
     constructor(private chatbotService: ChatbotService) { }
 
     toggleChat(): void {
         this.isOpen = !this.isOpen;
+    }
+
+    sendPrompt(prompt: string): void {
+        this.userInput = prompt;
+        this.send();
     }
 
     async send(): Promise<void> {

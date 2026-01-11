@@ -1,11 +1,16 @@
 <nav>
-    <div class="nav-content">
+    <div class="nav-content" [style.--scroll-progress]="scrollProgress + '%'">
         <div class="brand">AML</div>
-        <ul class="links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Work</a></li>
-            <li><a href="#contact">Contact</a></li>
+        <ul class="links" [class.open]="mobileMenuOpen">
+            <li *ngFor="let link of navLinks" [class.active]="activeSection === link.id" (click)="closeMobileMenu()">
+                <a [href]="'#' + link.id">{{ link.label }}</a>
+            </li>
         </ul>
+        <button class="mobile-menu-btn" [class.open]="mobileMenuOpen" (click)="toggleMobileMenu()">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        <div class="scroll-progress-bar"></div>
     </div>
 </nav>

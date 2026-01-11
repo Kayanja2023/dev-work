@@ -35,14 +35,48 @@
     border-radius: 50%;
     box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1);
     z-index: 2;
+    transition: all 0.3s ease;
+}
+
+/* Dot Pulse on Hover */
+.timeline-item:hover .dot {
+    animation: dotPulse 1.5s infinite;
+}
+
+@keyframes dotPulse {
+    0% {
+        box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1);
+    }
+
+    50% {
+        box-shadow: 0 0 0 10px rgba(0, 102, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1);
+    }
 }
 
 .line {
     width: 2px;
     flex: 1;
-    background: rgba(0, 0, 0, 0.05);
+    background: linear-gradient(to bottom, var(--text-accent) 0%, rgba(0, 102, 255, 0.1) 100%);
     margin-top: 4px;
     margin-bottom: 4px;
+    animation: lineGrow 0.8s ease-out both;
+}
+
+@keyframes lineGrow {
+    from {
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: top;
+    }
+
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
 }
 
 /* Hover Effect: Line lights up */
@@ -85,4 +119,71 @@ p {
     line-height: 1.5;
     color: #64748B;
     margin: 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .experience-card {
+        padding: 24px;
+    }
+
+    .card-header h3 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+
+    .timeline {
+        padding-left: 4px;
+    }
+
+    .timeline-item {
+        gap: 14px;
+        padding-bottom: 24px;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+    }
+
+    .period {
+        font-size: 0.7rem;
+    }
+
+    h4 {
+        font-size: 1rem;
+    }
+
+    .company-row {
+        font-size: 0.85rem;
+        margin-bottom: 6px;
+    }
+
+    p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 480px) {
+    .experience-card {
+        padding: 20px;
+    }
+
+    .timeline-marker {
+        width: 16px;
+    }
+
+    .timeline-item {
+        gap: 10px;
+        padding-bottom: 20px;
+    }
+
+    .period {
+        font-size: 0.65rem;
+    }
+
+    h4 {
+        font-size: 0.95rem;
+    }
 }

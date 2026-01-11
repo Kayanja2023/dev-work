@@ -21,6 +21,30 @@
     border: 2px solid rgba(255, 255, 255, 0.8);
     box-shadow: 0 5px 15px rgba(0, 102, 255, 0.25);
     flex-shrink: 0;
+    position: relative;
+}
+
+/* Profile Ring Pulse Animation */
+.profile-icon::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid var(--text-accent);
+    opacity: 0;
+    animation: ringPulse 2.5s ease-out infinite;
+}
+
+@keyframes ringPulse {
+    0% {
+        opacity: 0.8;
+        transform: scale(0.95);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.3);
+    }
 }
 
 .profile-icon img {
@@ -131,4 +155,89 @@ li {
     color: var(--text-light);
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .about-card {
+        padding: 24px;
+    }
+
+    .about-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .profile-icon {
+        width: 55px;
+        height: 55px;
+    }
+
+    .profile-info h3 {
+        font-size: 1.3rem;
+    }
+
+    .education-block,
+    .publications-block {
+        margin-top: 16px;
+        padding-top: 16px;
+    }
+
+    h4 {
+        font-size: 0.8rem;
+    }
+
+    li {
+        font-size: 0.85rem;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .pub-link {
+        font-size: 0.85rem;
+    }
+
+    .about-footer {
+        margin-top: 20px;
+        padding-top: 16px;
+        gap: 16px;
+    }
+
+    .stat strong {
+        font-size: 1.25rem;
+    }
+
+    .stat span {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-card {
+        padding: 20px;
+    }
+
+    .profile-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .profile-info h3 {
+        font-size: 1.15rem;
+    }
+
+    .status-badge {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+
+    .about-footer {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .stat {
+        flex: 1 1 80px;
+    }
 }

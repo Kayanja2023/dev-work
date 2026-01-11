@@ -173,6 +173,20 @@
     border-radius: 18px;
     font-size: 0.9rem;
     line-height: 1.4;
+    animation: messageSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Message Entrance Animation */
+@keyframes messageSlide {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .message.user .message-bubble {
@@ -185,6 +199,32 @@
     background: #F1F5F9;
     color: #1E293B;
     border-bottom-left-radius: 4px;
+}
+
+/* Suggested Prompts */
+.suggested-prompts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.prompt-chip {
+    background: white;
+    border: 1px solid #E2E8F0;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-muted);
+}
+
+.prompt-chip:hover {
+    background: var(--text-accent);
+    color: white;
+    border-color: var(--text-accent);
+    transform: translateY(-2px);
 }
 
 /* Typing Indicator */

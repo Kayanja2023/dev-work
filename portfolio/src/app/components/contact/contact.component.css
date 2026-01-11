@@ -18,13 +18,30 @@
 }
 
 .cta-button {
-    background: var(--text-accent);
+    background: linear-gradient(135deg, #0066FF, #00C6FF, #0066FF);
+    background-size: 200% 200%;
     color: white;
     padding: 14px 28px;
     border-radius: 50px;
     font-weight: 600;
     box-shadow: 0 10px 20px rgba(0, 102, 255, 0.25);
     transition: transform 0.2s, box-shadow 0.2s;
+    animation: gradientShift 3s ease infinite;
+}
+
+/* Gradient Shift Animation */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .cta-button:hover {
@@ -32,10 +49,60 @@
     box-shadow: 0 15px 30px rgba(0, 102, 255, 0.35);
 }
 
+@media (max-width: 768px) {
+    .contact-card {
+        padding: 32px 24px;
+    }
+
+    .cta-text h3 {
+        font-size: 1.5rem;
+    }
+
+    .cta-text p {
+        font-size: 1rem;
+    }
+
+    .cta-button {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+    }
+}
+
 @media (max-width: 600px) {
     .contact-card {
         flex-direction: column;
         text-align: center;
         gap: 20px;
+        padding: 28px 20px;
+    }
+
+    .cta-text h3 {
+        font-size: 1.35rem;
+    }
+
+    .cta-button {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-card {
+        padding: 24px 16px;
+        gap: 16px;
+    }
+
+    .cta-text h3 {
+        font-size: 1.2rem;
+        margin-bottom: 4px;
+    }
+
+    .cta-text p {
+        font-size: 0.9rem;
+    }
+
+    .cta-button {
+        padding: 12px 20px;
+        font-size: 0.9rem;
     }
 }

@@ -36,6 +36,11 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
 body {
     background-color: var(--bg-page);
     color: var(--text-main);
@@ -157,4 +162,83 @@ a {
 
 ::-webkit-scrollbar-thumb:hover {
     background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================
+   MOBILE RESPONSIVE ENHANCEMENTS
+   ========================================== */
+
+/* Tablet Breakpoint */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .container {
+        padding: 0 24px;
+    }
+
+    .bento-card {
+        padding: 2rem;
+    }
+}
+
+/* Mobile Breakpoint */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2rem;
+        line-height: 1.15;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+
+    p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+    .bento-card {
+        padding: 1.5rem;
+        border-radius: 20px;
+    }
+
+    /* Reduce hover effects on touch devices */
+    .bento-card:hover {
+        transform: none;
+    }
+}
+
+/* Small Mobile Breakpoint */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.85rem;
+    }
+
+    h2 {
+        font-size: 1.35rem;
+    }
+
+    .container {
+        padding: 0 12px;
+    }
+
+    .bento-card {
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
 }

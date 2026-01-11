@@ -22,6 +22,14 @@
             [class.assistant]="msg.role === 'assistant'">
             <div class="message-bubble">{{ msg.content }}</div>
         </div>
+
+        <!-- Suggested Prompts -->
+        <div class="suggested-prompts" *ngIf="messages.length <= 1">
+            <button class="prompt-chip" *ngFor="let prompt of suggestedPrompts" (click)="sendPrompt(prompt)">
+                {{ prompt }}
+            </button>
+        </div>
+
         <div class="typing-indicator" *ngIf="isLoading">
             <span></span><span></span><span></span>
         </div>

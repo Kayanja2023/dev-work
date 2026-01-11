@@ -80,6 +80,7 @@ footer {
     #bento-mosaic {
         grid-template-columns: 1fr;
         gap: 16px;
+        margin-top: 24px;
     }
 
     .cell-about,
@@ -89,11 +90,30 @@ footer {
     .cell-interests,
     .cell-contact {
         grid-column: span 1;
+        min-height: auto;
     }
 
     footer {
         margin-top: 40px;
-        padding: 30px 20px;
-        font-size: 0.9rem;
+        padding: 24px 16px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    main {
+        padding-top: 70px;
+        padding-bottom: 50px;
+    }
+
+    #bento-mosaic {
+        gap: 12px;
+        margin-top: 16px;
+    }
+
+    footer {
+        margin-top: 30px;
+        padding: 20px 12px;
     }
 }
