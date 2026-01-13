@@ -1,0 +1,140 @@
+<section class="automation-section" id="automation">
+    <div class="header-row">
+        <h3>Power Automate</h3>
+    </div>
+
+    <!-- Connector Bar -->
+    <div class="connector-bar">
+        <div class="connector-item" *ngFor="let connector of connectorIcons">
+            <span class="connector-icon">{{ connector.icon }}</span>
+            <span class="connector-name">{{ connector.name }}</span>
+        </div>
+    </div>
+
+    <!-- Flow Cards Grid -->
+    <div class="flows-grid">
+        <div class="flow-card" *ngFor="let flow of flows" [style.--flow-color]="flow.categoryColor"
+            (click)="openFlow(flow)">
+
+            <!-- Card Header -->
+            <div class="card-header">
+                <span class="category-badge" [style.background]="flow.categoryColor">
+                    {{ flow.category }}
+                </span>
+                <h3>{{ flow.title }}</h3>
+            </div>
+
+            <!-- Flow Visualization -->
+            <div class="flow-diagram">
+                <!-- Trigger -->
+                <div class="flow-node trigger">
+                    <span class="node-icon">{{ flow.trigger.icon }}</span>
+                    <span class="node-label">{{ flow.trigger.label }}</span>
+                    <span class="node-connector">{{ flow.trigger.connector }}</span>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <!-- Steps Preview (show first 3) -->
+                <ng-container *ngFor="let step of flow.steps.slice(0, 3); let i = index; let last = last">
+                    <div class="flow-node">
+                        <span class="node-icon">{{ step.icon }}</span>
+                        <span class="node-label">{{ step.label }}</span>
+                    </div>
+                    <div class="flow-arrow" *ngIf="!last">→</div>
+                </ng-container>
+
+                <div class="flow-more" *ngIf="flow.steps.length > 3">
+                    +{{ flow.steps.length - 3 }} more
+                </div>
+            </div>
+
+            <!-- Connectors Used -->
+            <div class="connectors-used">
+                <span class="connector-tag" *ngFor="let conn of flow.connectors">
+                    {{ conn }}
+                </span>
+            </div>
+
+            <!-- Metrics Preview -->
+            <div class="metrics-row">
+                <div class="metric" *ngFor="let metric of flow.metrics.slice(0, 2)">
+                    <span class="metric-icon">{{ metric.icon }}</span>
+                    <span class="metric-value">{{ metric.value }}</span>
+                </div>
+            </div>
+
+            <!-- View Details -->
+            <div class="card-footer">
+                <span class="view-details">View Flow Details <span class="arrow">→</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flow Detail Modal -->
+    <div class="flow-modal-backdrop" *ngIf="selectedFlow" (click)="closeFlow()">
+        <div class="flow-modal" (click)="$event.stopPropagation()" [style.--flow-color]="selectedFlow.categoryColor">
+
+            <button class="close-btn" (click)="closeFlow()">×</button>
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <span class="category-badge" [style.background]="selectedFlow.categoryColor">
+                    {{ selectedFlow.category }}
+                </span>
+                <h2>{{ selectedFlow.title }}</h2>
+                <p class="flow-value">{{ selectedFlow.businessValue }}</p>
+            </div>
+
+            <!-- Full Flow Diagram -->
+            <div class="full-flow-diagram">
+                <h4>Flow Architecture</h4>
+                <div class="flow-steps-container">
+                    <!-- Trigger -->
+                    <div class="step-card trigger-card">
+                        <div class="step-type">TRIGGER</div>
+                        <span class="step-icon">{{ selectedFlow.trigger.icon }}</span>
+                        <span class="step-title">{{ selectedFlow.trigger.label }}</span>
+                        <span class="step-connector">{{ selectedFlow.trigger.connector }}</span>
+                    </div>
+
+                    <div class="step-arrow">→</div>
+
+                    <!-- All Steps -->
+                    <ng-container *ngFor="let step of selectedFlow.steps; let last = last">
+                        <div class="step-card">
+                            <div class="step-type">ACTION</div>
+                            <span class="step-icon">{{ step.icon }}</span>
+                            <span class="step-title">{{ step.label }}</span>
+                            <span class="step-desc">{{ step.description }}</span>
+                            <span class="step-connector">{{ step.connector }}</span>
+                        </div>
+                        <div class="step-arrow" *ngIf="!last">→</div>
+                    </ng-container>
+                </div>
+            </div>
+
+            <!-- Metrics -->
+            <div class="modal-metrics">
+                <h4>Business Impact</h4>
+                <div class="metrics-grid">
+                    <div class="metric-card" *ngFor="let metric of selectedFlow.metrics">
+                        <span class="metric-icon-lg">{{ metric.icon }}</span>
+                        <span class="metric-label">{{ metric.label }}</span>
+                        <span class="metric-value-lg">{{ metric.value }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Connectors -->
+            <div class="modal-connectors">
+                <h4>Microsoft 365 Integrations</h4>
+                <div class="connector-pills">
+                    <span class="connector-pill" *ngFor="let conn of selectedFlow.connectors">
+                        {{ conn }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -13,6 +13,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
 import { ExperienceComponent } from './components/experience/experience.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
+import { PowerAutomateComponent } from './components/power-automate/power-automate.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ChatbotComponent } from './components/chatbot/chatbot.component';
     ProjectDetailComponent,
     ExperienceComponent,
     InterestsComponent,
-    ChatbotComponent
+    ChatbotComponent,
+    PowerAutomateComponent
   ],
   imports: [
     BrowserModule,

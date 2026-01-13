@@ -30,7 +30,10 @@ main {
     /* Full width row */
 }
 
-
+.cell-automation {
+    grid-column: span 4;
+    /* Full width row */
+}
 
 /* Full width row */
 
@@ -64,6 +67,7 @@ footer {
 
     .cell-experience,
     .cell-projects,
+    .cell-automation,
     .cell-interests,
     .cell-contact {
         grid-column: span 2;
@@ -87,6 +91,7 @@ footer {
     .cell-skills,
     .cell-experience,
     .cell-projects,
+    .cell-automation,
     .cell-interests,
     .cell-contact {
         grid-column: span 1;
