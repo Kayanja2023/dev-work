@@ -20,6 +20,18 @@
                     <span *ngFor="let tag of project.tags" class="v-tag">{{ tag }}</span>
                 </div>
 
+                <!-- Action Buttons -->
+                <div class="action-buttons" *ngIf="project.liveDemo || project.githubUrl">
+                    <a *ngIf="project.liveDemo" [href]="project.liveDemo" target="_blank"
+                        class="action-btn live-demo-btn" (click)="$event.stopPropagation()">
+                        <span class="btn-icon">🚀</span> Try Live Demo
+                    </a>
+                    <a *ngIf="project.githubUrl" [href]="project.githubUrl" target="_blank"
+                        class="action-btn github-btn" (click)="$event.stopPropagation()">
+                        <span class="btn-icon">📂</span> View on GitHub
+                    </a>
+                </div>
+
                 <button class="mobile-close-btn" (click)="onClose()">&times;</button>
             </div>
         </div>

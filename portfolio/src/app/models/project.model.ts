@@ -17,4 +17,6 @@ export interface Project {
     features: { title: string; desc: string; icon: string }[];
     chatSimulatorData?: { user: string; ai: string }[]; // Optional chat data
     businessValue?: string; // Brief statement about business importance
+    liveDemo?: string; // Optional live demo URL
+    githubUrl?: string; // Optional GitHub repository URL
 }

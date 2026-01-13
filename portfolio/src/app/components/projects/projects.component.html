@@ -1,7 +1,6 @@
 <div class="projects-wrapper">
     <div class="header-row">
         <h3>Selected Works</h3>
-
     </div>
 
     <div class="gallery-grid">
@@ -13,9 +12,12 @@
             <div class="tile-visual">
                 <div class="visual-bg" *ngIf="proj.image" [style.background-image]="'url(' + proj.image + ')'"></div>
                 <div class="overlay"></div>
-                <div class="live-badge"
-                    *ngIf="['hollard-ai', 'pep-merch-hub', 'sentiment-rag', 'java-spring-api'].includes(proj.id)">
+                <span class="project-number">0{{ i + 1 }}</span>
+                <div class="live-badge" *ngIf="proj.liveDemo">
                     <span class="pulse"></span> Live Demo
+                </div>
+                <div class="live-badge github-badge" *ngIf="!proj.liveDemo && proj.githubUrl">
+                    <span>&#x2B50;</span> GitHub
                 </div>
             </div>
 
@@ -23,7 +25,7 @@
             <div class="tile-content">
                 <div class="content-top">
                     <span class="category">{{ proj.category }}</span>
-                    <div class="arrow-btn">&nearr;</div>
+                    <div class="arrow-btn">&#8599;</div>
                 </div>
 
                 <h3>{{ proj.title }}</h3>
