@@ -38,7 +38,7 @@ jobs:
         run: npm ci
 
       - name: Build Angular app for production
-        run: npm run build -- --configuration production --base-href /portfolio/
+        run: npm run build -- --configuration production --base-href /dev-work/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
